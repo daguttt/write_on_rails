@@ -4,6 +4,10 @@ A platform that joins writers into a community
 
 ## Developing
 
+## Repository
+
+[WriteOn](https://github.com/daguttt/write_on_rails)
+
 ### Project setup
 
 #### 1. Environment variables
