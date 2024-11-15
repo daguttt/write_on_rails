@@ -1,32 +1,48 @@
 <div id="<%= dom_id post %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= post.title %>
-  </p>
+  <section>
+    <h2 class="text-2xl"><%= post.title %></h2>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Content:</strong>
+      <%= post.content %>
+    </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Status:</strong>
+      <%= post.status %>
+    </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Published at:</strong>
+      <%= post.published_at %>
+    </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">User:</strong>
+      <%= post.user_id %>
+    </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Category:</strong>
+      <%= post.category_id %>
+    </p>
+  </section>
+  <section>
+    <h3 class="text-2xl">Comments</h3>
+    <% if post.comments.any? %>
+      <div class="grid gap-4">
+        <% post.comments.each do |comment| %>
+          <div>
+            <p class="grid gap-2 bg-gray-100 border border-gray-200 text-gray-800 rounded-lg p-4 md:p-5 dark:bg-white/10 dark:border-white/20 dark:text-white">
+              <strong><%= comment.text %></strong>
+              <span class="text-sm text-gray-500">by <%= comment.user.name %></span>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>No comments yet.</p>
+    <% end %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
-    <%= post.content %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= post.status %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Published at:</strong>
-    <%= post.published_at %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= post.user_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Category:</strong>
-    <%= post.category_id %>
-  </p>
-
+    <% if current_user.present? %>
+      <%= render "comments/create_form", post: post %>
+    <% else %>
+      <p>Sign in to leave a comment.</p>
+    <% end %>
+  </section>
 </div>

@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   enum :status, [ :draft, :pending, :published, :unpublished ]
   belongs_to :user
   belongs_to :category
+  has_many :comments
 
   validates :title, :content, :status, presence: true
   validates :title, length: { maximum: 255 }

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post "comments/create" => "comments#create"
+
   resources :posts
   resources :categories
   devise_for :users, controllers: { registrations: "users/registrations" }

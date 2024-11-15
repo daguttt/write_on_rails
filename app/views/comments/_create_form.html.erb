@@ -1,0 +1,12 @@
+<div>
+  <%= form_with(model: Comment.new, url: comments_create_path, class: "contents") do |form| %>
+    <div class="my-5">
+      <%= form.label :text, "New comment" %>
+      <%= form.text_area :text, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <%= form.hidden_field :post_id, value: post.id %>
+
+    <%= form.submit class: "rounded-lg py-2 px-4 text-sm bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <% end %>
+</div>
