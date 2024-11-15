@@ -67,7 +67,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      configured_relation = Post.includes(:comments) if action_name == "show"
+      configured_relation = action_name == "show" ? Post.includes(:comments) : Post
       @post = configured_relation.find(params[:id])
     end
 
