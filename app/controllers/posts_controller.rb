@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[ show edit update destroy ]
 
+  rescue_from ActiveRecord::RecordNotFound do
+    redirect_to posts_path, notice: "Post not found"
+  end
+
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -22,7 +26,7 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = current_user.posts.new(post_params.merge(status: :published))
+    @post = current_user.posts.new(post_params.merge({ status: :published, published_at: Time.now }))
 
     respond_to do |format|
       if @post.save
@@ -61,7 +65,8 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      configured_relation = Post.includes(:comments) if action_name == "show"
+      @post = configured_relation.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
