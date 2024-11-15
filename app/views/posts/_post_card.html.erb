@@ -1,0 +1,15 @@
+<%= link_to post do %>
+  <div id="<%= dom_id post %>" class="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+    <h2 class="text-lg font-bold text-gray-800 dark:text-white"><%= post.title %></h2>
+    <p class="mt-1 text-xs font-medium text-gray-500 dark:text-neutral-500">by <%= post.user.name %></p>
+    <p class="mt-2 text-gray-500 dark:text-neutral-400">
+      <%= post.content %>
+    </p>
+    <p class="mt-2 text-gray-500 dark:text-neutral-400">
+      <%= post.published_at.strftime("%B %d, %Y - %I:%M %P") %>
+    </p>
+    <p class="mt-2 inline-flex self-start items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-800/30 dark:text-orange-500">
+      <%= post.category.name %>
+    </p>
+  </div>
+<% end %>
