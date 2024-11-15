@@ -6,7 +6,7 @@ A platform that joins writers into a community
 
 ## Repository
 
-[WriteOn](https://github.com/daguttt/write_on_rails)
+[https://github.com/daguttt/write_on_rails](https://github.com/daguttt/write_on_rails)
 
 ### Project setup
 
