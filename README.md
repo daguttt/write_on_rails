@@ -2,11 +2,11 @@
 
 A platform that joins writers into a community
 
-# Developing
+## Developing
 
-## Project setup
+### Project setup
 
-### 1. Environment variables
+#### 1. Environment variables
 
 1. Creat a `.env` file and populate it with the content of `.env.example` file.
 2. Replace the values with your own db credentials
