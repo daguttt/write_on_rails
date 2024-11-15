@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum :role, [ :admin, :writer ]
+  has_many :posts
+
+  validates :name, presence: true
 end
