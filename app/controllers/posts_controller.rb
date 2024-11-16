@@ -8,9 +8,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.where(status: :published)
-      .order(published_at: :desc)
-    @posts = @posts.where("title LIKE ?", "%#{params[:s]}%") if params[:s].present?
+    @posts = Post.published.filtered(params[:s]).order(published_at: :desc)
   end
 
   # GET /posts/1 or /posts/1.json

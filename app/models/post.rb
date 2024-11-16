@@ -8,4 +8,7 @@ class Post < ApplicationRecord
   validates :title, length: { maximum: 255 }
   validates :content, length: { minimum: 15 }
   validates :status, inclusion: { in: %w[draft pending published unpublished] }
+
+  scope :filtered, ->(search) { where("title LIKE ?", "%#{search}%") if search.present? }
+  scope :published, -> { where(status: :published) }
 end
